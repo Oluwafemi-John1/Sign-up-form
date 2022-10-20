@@ -1,0 +1,36 @@
+<%- include("../partials/header.ejs") %> 
+<div class="container">
+    <h1 class="header teal-text">Register here</h1>
+    <% if (status) { %>
+        <h3 class="header green-text center">
+            <%= message %> 
+        </h3>
+    <% } else if (status == false) { %>
+        <h3 class="header red-text center">
+            <%= message %> 
+        </h3>
+    <% } %>
+    <form action="/details", method="post">
+        <div class="input-field col s6">
+            <input id="first_name" type="text" class="validate"name="first_name" >
+            <label for="first_name">First Name</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="last_name" type="text" class="validate" name="last_name">
+            <label for="last_name">Last Name</label>
+        </div>
+        <div class="input-field col s6">
+            <input id="email" type="email" class="validate" name="email">
+            <label for="email">Email</label>
+            <span class="helper-text" data-error="wrong" data-success="right">Must include @</span>
+        </div>
+        <div class="input-field col s6">
+            <input id="password" type="password" class="validate" name="password">
+            <label for="password">Password</label>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</div>
+<%- include("../partials/footer.ejs") %> 
