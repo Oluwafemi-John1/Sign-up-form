@@ -38,18 +38,10 @@ const deleteUser = (req,res)=>{
         if (err) {
             console.log('delete failed. Try again');
         } else {
-            userModel.find((err,result)=>{
-                if (err) {
-                    console.log("error occured");
-                } else {
-                    console.log(result);
-                    res.render("pages/details", {userDetails:result})
-                    console.log('deleted successfully');
-                }
-            })
+            res.redirect('/details');
+            console.log('deleted successfully');
         }
     })
-    console.log(req.body);
 }
 
 const details = (req,res)=>{
@@ -57,10 +49,31 @@ const details = (req,res)=>{
         if (err) {
             console.log("Could not fetch data");
         } else {
-            console.log(result);
             res.render("pages/details", {userDetails:result})
         }
     })
 }
 
-module.exports = { register, deleteUser, details }
+const editUser = (req,res)=> {
+    let userId = req.body.id;
+    userModel.findOne({_id:userId},(err,result)=>{
+        if (err) {
+            console.log("unable to edit");
+        } else {
+            console.log(result);
+            res.render("pages/edit",{userDetails:result})
+        }
+    })
+}
+const updateUser = (req,res) =>{
+    let id = req.body.id;
+    userModel.findByIdAndUpdate(id,req.body,(err,resp)=>{
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(resp);
+            res.redirect('/details');
+        }
+    })
+}
+module.exports = { register, deleteUser, details, editUser, updateUser }

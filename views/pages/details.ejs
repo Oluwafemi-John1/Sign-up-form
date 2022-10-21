@@ -23,7 +23,10 @@
                     <button class="btn red"><i class="material-icons">delete</i></button>
                 </form>
 
-                <button class="btn black"><i class="material-icons">edit</i></button>
+                <form action="/edit" method="post">
+                    <input type="hidden" value="<%=userDetails[index]._id%>" name="id">
+                    <button class="btn black"><i class="material-icons">edit</i></button>
+                </form>
                 
             </td>
           </tr>

@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended:true}));
 const mongoose = require('mongoose');
 const userModel = require('./models/userModel');
-const { register, deleteUser, details } = require('./controllers/usersController');
+const { register, deleteUser, details, editUser, updateUser } = require('./controllers/usersController');
 const { checkUser } = require('./middlewares/userMiddleware');
 
 
@@ -46,3 +46,7 @@ app.post("/details", register);
 app.post("/delete", deleteUser);
 
 app.get("/testmiddle", checkUser)
+
+app.post("/edit", editUser)
+
+app.post("/update", updateUser)
